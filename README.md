@@ -29,7 +29,29 @@ This is the official Pytorch implementation of our paper:
 
 T2I-CoReBench comprehensively covers 12 evaluation dimensions spanning both *composition* and *reasoning* scenarios. The symbols indicate different coverage levels: <span style="font-size:32px; vertical-align: -5px; line-height:1;">●</span> means coverage with high compositional (visual elements > 5) or reasoning (one-to-many or many-to-one inference) complexity. <span style="font-size:16px; line-height:1;">◐</span> means coverage under simple settings (visual elements ≤ 5 or one-to-one inference). <span style="font-size:32px; vertical-align: -5px; line-height:1;">○</span> means this dimension is not covered.
 
-## Evaluation Guideline
+## Quick Start
+
+To evaluate text-to-image models on our T2I-CoReBench, follow these steps:
+
+### Generate Images
+
+Use the provided script to generate images from the benchmark prompts in `./data`. You can customize the T2I models by editing `MODELS` and adjust GPU usage by setting `GPUS`. Here, we take *Qwen-Image* as an example, and the corresponding Python environment can be referred to in its [official repository](https://github.com/QwenLM/Qwen-Image).
+
+  ```bash
+  bash sample.sh
+  ```
+
+If you wish to sample with your own model, simply modify the sampling code in `sample.py`, i.e., the model loading part (lines 44–72) and the sampling part (line 94); no other changes are required.
+
+### Run Evaluation
+
+Evaluate the generated images using our evaluation framework. We provide evaluation code based on both **Gemini 2.5 Flash** and **Qwen2.5-VL-72B**. For environment setup, please refer to the [Gemini documentation](https://ai.google.dev/gemini-api/docs) (an official API key is required) and the [vLLM User Guide](https://docs.vllm.ai/en/latest/getting_started/quickstart.html#installation). When using **Qwen2.5-VL-72B** for evaluation, our experiments are conducted with 8 × A800 GPUs (80GB); however, our tests confirm that it can also run with 4 × A800 GPUs.
+
+  ```bash
+  bash eval.sh
+  ```
+
+The evaluation process will automatically assess the generated images across all 12 dimensions of our benchmark and provide a `mean_score` for each dimension in an individual `json` file.
 
 
 ## Examples of Each Dimension
