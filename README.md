@@ -35,22 +35,22 @@ T2I-CoReBench comprehensively covers 12 evaluation dimensions spanning both *com
 ## Examples of Each Dimension
 
 <p align="center">
-  <img src="assets/fig_composition.JPEG" width="95%"><br>
+  <img src="assets/fig_composition.jpeg" width="95%"><br>
   <em>(a) Composition (i.e., MI, MA, MR, TR)</em>
 </p>
 
 <p align="center">
-  <img src="assets/fig_reasoning_de.JPEG" width="95%"><br>
+  <img src="assets/fig_reasoning_de.jpeg" width="95%"><br>
   <em>(b) Deductive Reasoning (i.e., LR, BR, HR, PR)</em>
 </p>
 
 <p align="center">
-  <img src="assets/fig_reasoning_in.JPEG" width="95%"><br>
+  <img src="assets/fig_reasoning_in.jpeg" width="95%"><br>
   <em>(c) Inductive Reasoning (i.e., GR, AR)</em>
 </p>
 
 <p align="center">
-  <img src="assets/fig_reasoning_ab.JPEG" width="95%"><br>
+  <img src="assets/fig_reasoning_ab.jpeg" width="95%"><br>
   <em>(d) Abductive Reasoning (i.e., CR, RR)</em>
 </p>
 
