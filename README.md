@@ -41,7 +41,7 @@ Use the provided script to generate images from the benchmark prompts in `./data
   bash sample.sh
   ```
 
-If you wish to sample with your own model, simply modify the sampling code in `sample.py`, i.e., the model loading part (lines 44–72) and the sampling part (line 94); no other changes are required.
+If you wish to sample with your own model, simply modify the sampling code in `sample.py`, i.e., the model loading part in `lines 44–72` and the sampling part in `line 94`; no other changes are required.
 
 ### Run Evaluation
 
