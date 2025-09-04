@@ -16,7 +16,7 @@ This is the official Pytorch implementation of our paper:
 </p>
 
 
-![teaser](assets/teaser.JPEG)
+![teaser](assets/teaser.jpeg)
 
 **Statistics of T2I-CoReBench.** *Left*: Our T2I evaluation taxonomy spanning two fundamental generative capabilities (i.e., *composition* and *reasoning*), further refined into 12 dimensions. *Right*: Distributions of prompt-token lengths and checklist-question counts. Our benchmark demonstrates high complexity, with an average prompt length of 170 tokens and an average of 12.5 questions. Note: reasoning has fewer questions, as each requires reasoning that is more challenging.
 
@@ -25,7 +25,7 @@ This is the official Pytorch implementation of our paper:
 
 ## Benchmark Comparison
 
-![benchmark_comparison](assets/benchmark_comparison.JPEG)
+![benchmark_comparison](assets/benchmark_comparison.jpeg)
 
 T2I-CoReBench comprehensively covers 12 evaluation dimensions spanning both *composition* and *reasoning* scenarios. The symbols indicate different coverage levels: <span style="font-size:32px; vertical-align: -5px; line-height:1;">●</span> means coverage with high compositional (visual elements > 5) or reasoning (one-to-many or many-to-one inference) complexity. <span style="font-size:16px; line-height:1;">◐</span> means coverage under simple settings (visual elements ≤ 5 or one-to-one inference). <span style="font-size:32px; vertical-align: -5px; line-height:1;">○</span> means this dimension is not covered.
 
@@ -35,28 +35,28 @@ T2I-CoReBench comprehensively covers 12 evaluation dimensions spanning both *com
 ## Examples of Each Dimension
 
 <figure style="text-align:center; margin:1.5em 0;">
-  <img src="assets/fig_composition.JPEG" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+  <img src="assets/fig_composition.jpeg" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
   <figcaption style="margin-top:0.5em; font-size:14px; color:#555;">
     (a) Composition (i.e., MI, MA, MR, TR)
   </figcaption>
 </figure>
 
 <figure style="text-align:center; margin:1.5em 0;">
-  <img src="assets/fig_reasoning_de.JPEG" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+  <img src="assets/fig_reasoning_de.jpeg" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
   <figcaption style="margin-top:0.5em; font-size:14px; color:#555;">
     (b) Deductive Reasoning (i.e., LR, BR, HR, PR)
   </figcaption>
 </figure>
 
 <figure style="text-align:center; margin:1.5em 0;">
-  <img src="assets/fig_reasoning_in.JPEG" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+  <img src="assets/fig_reasoning_in.jpeg" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
   <figcaption style="margin-top:0.5em; font-size:14px; color:#555;">
     (c) Inductive Reasoning (i.e., GR, AR)
   </figcaption>
 </figure>
 
 <figure style="text-align:center; margin:1.5em 0;">
-  <img src="assets/fig_reasoning_ab.JPEG" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+  <img src="assets/fig_reasoning_ab.jpeg" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
   <figcaption style="margin-top:0.5em; font-size:14px; color:#555;">
     (d) Abductive Reasoning (i.e., CR, RR)
   </figcaption>
