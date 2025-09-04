@@ -20,7 +20,7 @@ This is the official Pytorch implementation of our paper:
 
 **Statistics of T2I-CoReBench.** *Left*: Our T2I evaluation taxonomy spanning two fundamental generative capabilities (i.e., *composition* and *reasoning*), further refined into 12 dimensions. *Right*: Distributions of prompt-token lengths and checklist-question counts. Our benchmark demonstrates high complexity, with an average prompt length of 170 tokens and an average of 12.5 questions. Note: reasoning has fewer questions, as each requires reasoning that is more challenging.
 
-## News
+## 📣 News
 - `2025/09` :star2: We have released our benchmark dataset and code.
 
 ## Benchmark Comparison
@@ -29,7 +29,7 @@ This is the official Pytorch implementation of our paper:
 
 T2I-CoReBench comprehensively covers 12 evaluation dimensions spanning both *composition* and *reasoning* scenarios. The symbols indicate different coverage levels: <span style="font-size:32px; vertical-align: -5px; line-height:1;">●</span> means coverage with high compositional (visual elements > 5) or reasoning (one-to-many or many-to-one inference) complexity. <span style="font-size:16px; line-height:1;">◐</span> means coverage under simple settings (visual elements ≤ 5 or one-to-one inference). <span style="font-size:32px; vertical-align: -5px; line-height:1;">○</span> means this dimension is not covered.
 
-## Quick Start
+## 🔥 Quick Start
 
 To evaluate text-to-image models on our T2I-CoReBench, follow these steps:
 
@@ -54,7 +54,7 @@ Evaluate the generated images using our evaluation framework. We provide evaluat
 The evaluation process will automatically assess the generated images across all 12 dimensions of our benchmark and provide a `mean_score` for each dimension in an individual `json` file.
 
 
-## Examples of Each Dimension
+## 📊 Examples of Each Dimension
 
 <p align="center">
   <img src="assets/fig_composition.jpeg" width="95%"><br>
@@ -76,7 +76,7 @@ The evaluation process will automatically assess the generated images across all
   <em>(d) Abductive Reasoning (i.e., CR, RR)</em>
 </p>
 
-## Citation
+## ✍️ Citation
 If you find the repo useful, please consider citing.
 ```
 @misc{li2025easier,
