@@ -34,33 +34,25 @@ T2I-CoReBench comprehensively covers 12 evaluation dimensions spanning both *com
 
 ## Examples of Each Dimension
 
-<figure style="text-align:center; margin:1.5em 0;">
-  <img src="assets/fig_composition.jpeg" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
-  <figcaption style="margin-top:0.5em; font-size:14px; color:#555;">
-    (a) Composition (i.e., MI, MA, MR, TR)
-  </figcaption>
-</figure>
+<p align="center">
+  <img src="assets/fig_composition.JPEG" width="95%"><br>
+  <em>(a) Composition (i.e., MI, MA, MR, TR)</em>
+</p>
 
-<figure style="text-align:center; margin:1.5em 0;">
-  <img src="assets/fig_reasoning_de.jpeg" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
-  <figcaption style="margin-top:0.5em; font-size:14px; color:#555;">
-    (b) Deductive Reasoning (i.e., LR, BR, HR, PR)
-  </figcaption>
-</figure>
+<p align="center">
+  <img src="assets/fig_reasoning_de.JPEG" width="95%"><br>
+  <em>(b) Deductive Reasoning (i.e., LR, BR, HR, PR)</em>
+</p>
 
-<figure style="text-align:center; margin:1.5em 0;">
-  <img src="assets/fig_reasoning_in.jpeg" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
-  <figcaption style="margin-top:0.5em; font-size:14px; color:#555;">
-    (c) Inductive Reasoning (i.e., GR, AR)
-  </figcaption>
-</figure>
+<p align="center">
+  <img src="assets/fig_reasoning_in.JPEG" width="95%"><br>
+  <em>(c) Inductive Reasoning (i.e., GR, AR)</em>
+</p>
 
-<figure style="text-align:center; margin:1.5em 0;">
-  <img src="assets/fig_reasoning_ab.jpeg" style="max-width:95%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
-  <figcaption style="margin-top:0.5em; font-size:14px; color:#555;">
-    (d) Abductive Reasoning (i.e., CR, RR)
-  </figcaption>
-</figure>
+<p align="center">
+  <img src="assets/fig_reasoning_ab.JPEG" width="95%"><br>
+  <em>(d) Abductive Reasoning (i.e., CR, RR)</em>
+</p>
 
 ## Citation
 If you find the repo useful, please consider citing.
