@@ -22,6 +22,9 @@
     <a href='https://huggingface.co/datasets/lioooox/T2I-CoReBench-Images'>
       <img src='https://img.shields.io/badge/HuggingFace-Images-FFB000?style=flat&logo=huggingface&logoColor=white'>
     </a>
+    <a href='https://github.com/KwaiVGI/T2I-CoReBench'>
+      <img src='https://img.shields.io/badge/GitHub-Code-181717?style=flat&logo=github&logoColor=white'>
+    </a>
   </p>
 
   [**Ouxiang Li**](https://scholar.google.com/citations?user=g2oUt1AAAAAJ&hl=en)<sup>1*</sup>, [**Yuan Wang**](https://scholar.google.com/citations?user=jCmA4IoAAAAJ&hl=en)<sup>1</sup>, [**Xinting Hu**](https://scholar.google.com/citations?user=o6h6sVMAAAAJ&hl=en)<sup>2†</sup>, [**Huijuan Huang**](https://scholar.google.com/citations?hl=en&user=BMPobCoAAAAJ)<sup>3‡</sup>, [**Rui Chen**](https://scholar.google.com/citations?hl=en&user=bJzPwcsAAAAJ)<sup>3</sup>, [**Jiarong Ou**](https://scholar.google.com/citations?user=DQLWdVUAAAAJ&hl=en)<sup>3</sup>, <br>
