@@ -1,4 +1,4 @@
-![title](assets/title.png)
+<img src="assets/title.png" alt="title" width="90%">
 
 <div align="center">
 
