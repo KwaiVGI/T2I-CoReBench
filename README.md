@@ -20,7 +20,7 @@
     </a>
   </p>
 
-  [**Ouxiang Li**](https://scholar.google.com/citations?user=g2oUt1AAAAAJ&hl=en)<sup>1*</sup>, [**Yuan Wang**](https://scholar.google.com/citations?user=jCmA4IoAAAAJ&hl=en)<sup>1</sup>, [**Xinting Hu**](https://scholar.google.com/citations?user=o6h6sVMAAAAJ&hl=en)<sup>2†</sup>, [**Huijuan Huang**](https://scholar.google.com/citations?hl=en&user=bJzPwcsAAAAJ)<sup>3‡</sup>, [**Rui Chen**](https://scholar.google.com/citations?user=DQLWdVUAAAAJ&hl=en)<sup>3</sup>, [**Jiarong Ou**](https://scholar.google.com/citations?user=DQLWdVUAAAAJ&hl=en)<sup>3</sup>, <br>
+  [**Ouxiang Li**](https://scholar.google.com/citations?user=g2oUt1AAAAAJ&hl=en)<sup>1*</sup>, [**Yuan Wang**](https://scholar.google.com/citations?user=jCmA4IoAAAAJ&hl=en)<sup>1</sup>, [**Xinting Hu**](https://scholar.google.com/citations?user=o6h6sVMAAAAJ&hl=en)<sup>2†</sup>, [**Huijuan Huang**](https://scholar.google.com/citations?hl=en&user=BMPobCoAAAAJ)<sup>3‡</sup>, [**Rui Chen**](https://scholar.google.com/citations?hl=en&user=bJzPwcsAAAAJ)<sup>3</sup>, [**Jiarong Ou**](https://scholar.google.com/citations?user=DQLWdVUAAAAJ&hl=en)<sup>3</sup>, <br>
   [**Xin Tao**](https://scholar.google.com/citations?user=sQ30WyUAAAAJ&hl=en)<sup>3†</sup>, [**Pengfei Wan**](https://scholar.google.com/citations?user=P6MraaYAAAAJ&hl=en)<sup>3</sup>, [**Fuli Feng**](https://scholar.google.com/citations?user=QePM4u8AAAAJ&hl=en)<sup>1</sup>
 
   <sup>1</sup>University of Science and Technology of China, <sup>2</sup>Nanyang Technological University, <sup>3</sup>Kuaishou Technology
