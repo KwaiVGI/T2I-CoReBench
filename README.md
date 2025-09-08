@@ -1,4 +1,6 @@
-<img src="assets/title.png" alt="title" width="90%">
+<div align="center">
+  <img src="assets/title.png" alt="title" width="90%">
+</div>
 
 <div align="center">
 
