@@ -41,6 +41,7 @@
 **Overview of our T2I-CoReBench.** (a) Our benchmark comprehensively covers two fundamental T2I capabilities (i.e., *composition* and *reasoning*), further refined into 12 dimensions. (b–e) Our benchmark poses greater challenges to advanced T2I models, with higher compositional density than DPG-Bench [Hu et al., 2024] and greater reasoning intensity than R2I-Bench [Chen et al., 2025], enabling clearer performance differentiation across models under real-world complexities. Each image is scored based on the ratio of correctly generated elements.
 
 ## 📣 News
+- `2025/09` :star2: We have updated the evaluation results of <a href="https://seed.bytedance.com/en/seedream4_0" target="_blank"><strong>Seedream 4.0</strong></a>.
 - `2025/09` :star2: We have released our benchmark dataset and code.
 
 ## Benchmark Comparison
