@@ -27,18 +27,18 @@
     </a>
   </p>
 
-  [**Ouxiang Li**](https://scholar.google.com/citations?user=g2oUt1AAAAAJ&hl=en)<sup>1*</sup>, [**Yuan Wang**](https://scholar.google.com/citations?user=jCmA4IoAAAAJ&hl=en)<sup>1</sup>, [**Xinting Hu**](https://scholar.google.com/citations?user=o6h6sVMAAAAJ&hl=en)<sup>2†</sup>, [**Huijuan Huang**](https://scholar.google.com/citations?hl=en&user=BMPobCoAAAAJ)<sup>3‡</sup>, [**Rui Chen**](https://scholar.google.com/citations?hl=en&user=bJzPwcsAAAAJ)<sup>3</sup>, [**Jiarong Ou**](https://scholar.google.com/citations?user=DQLWdVUAAAAJ&hl=en)<sup>3</sup>, <br>
-  [**Xin Tao**](https://scholar.google.com/citations?user=sQ30WyUAAAAJ&hl=en)<sup>3†</sup>, [**Pengfei Wan**](https://scholar.google.com/citations?user=P6MraaYAAAAJ&hl=en)<sup>3</sup>, [**Fuli Feng**](https://scholar.google.com/citations?user=QePM4u8AAAAJ&hl=en)<sup>1</sup>
+  [**Ouxiang Li**](https://scholar.google.com/citations?user=g2oUt1AAAAAJ&hl)<sup>1*</sup>, [**Yuan Wang**](https://scholar.google.com/citations?user=jCmA4IoAAAAJ&hl)<sup>1</sup>, [**Xinting Hu**](https://scholar.google.com/citations?user=o6h6sVMAAAAJ&hl)<sup>†</sup>, [**Huijuan Huang**](https://scholar.google.com/citations?user=BMPobCoAAAAJ)<sup>2‡</sup>, [**Rui Chen**](https://scholar.google.com/citations?user=bJzPwcsAAAAJ)<sup>2</sup>, [**Jiarong Ou**](https://scholar.google.com/citations?user=DQLWdVUAAAAJ&hl)<sup>2</sup>, <br>
+  [**Xin Tao**](https://scholar.google.com/citations?user=sQ30WyUAAAAJ&hl)<sup>2†</sup>, [**Pengfei Wan**](https://scholar.google.com/citations?user=P6MraaYAAAAJ&hl)<sup>2</sup>, [**Xiaojuan Qi**](https://scholar.google.com/citations?user=bGn0uacAAAAJ)<sup>1</sup>, [**Fuli Feng**](https://scholar.google.com/citations?user=QePM4u8AAAAJ&hl)<sup>1</sup>
 
-  <sup>1</sup>University of Science and Technology of China, <sup>2</sup>Nanyang Technological University, <sup>3</sup>Kuaishou Technology
+  <sup>1</sup>University of Science and Technology of China, <sup>2</sup>Kling Team, Kuaishou Technology, <sup>3</sup>The University of Hong Kong
   <br>
-  <sup>*</sup>Work done during internship at KwaiVGI, Kuaishou Technology. <sup>†</sup>Corresponding authors. <sup>†</sup>Project leader.
+  <sup>*</sup>Work done during internship at KwaiVGI, Kuaishou Technology. <sup>†</sup>Corresponding authors. <sup>†</sup>Project lead.
 
 </div>
 
 ![teaser](assets/teaser.jpeg)
 
-**Statistics of T2I-CoReBench.** *Left*: Our T2I evaluation taxonomy spanning two fundamental generative capabilities (i.e., *composition* and *reasoning*), further refined into 12 dimensions. *Right*: Distributions of prompt-token lengths and checklist-question counts. Our benchmark demonstrates high complexity, with an average prompt length of 170 tokens and an average of 12.5 questions. Note: reasoning has fewer questions, as each requires reasoning that is more challenging.
+**Overview of our T2I-CoReBench.** (a) Our benchmark comprehensively covers two fundamental T2I capabilities (i.e., *composition* and *reasoning*), further refined into 12 dimensions. (b–e) Our benchmark poses greater challenges to advanced T2I models, with higher compositional density than DPG-Bench [Hu et al., 2024] and greater reasoning intensity than R2I-Bench [Chen et al., 2025], enabling clearer performance differentiation across models under real-world complexities. Each image is scored based on the ratio of correctly generated elements.
 
 ## 📣 News
 - `2025/09` :star2: We have released our benchmark dataset and code.
@@ -77,23 +77,63 @@ The evaluation process will automatically assess the generated images across all
 ## 📊 Examples of Each Dimension
 
 <p align="center">
-  <img src="assets/fig_composition.jpeg" width="95%"><br>
-  <em>(a) Composition (i.e., MI, MA, MR, TR)</em>
+  <img src="assets/1-C-MI.jpeg" width="95%"><br>
+  <!-- <em></em> -->
 </p>
 
 <p align="center">
-  <img src="assets/fig_reasoning_de.jpeg" width="95%"><br>
-  <em>(b) Deductive Reasoning (i.e., LR, BR, HR, PR)</em>
+  <img src="assets/2-C-MA.jpeg" width="95%"><br>
+  <!-- <em></em> -->
 </p>
 
 <p align="center">
-  <img src="assets/fig_reasoning_in.jpeg" width="95%"><br>
-  <em>(c) Inductive Reasoning (i.e., GR, AR)</em>
+  <img src="assets/3-C-MR.jpeg" width="95%"><br>
+  <!-- <em></em> -->
 </p>
 
 <p align="center">
-  <img src="assets/fig_reasoning_ab.jpeg" width="95%"><br>
-  <em>(d) Abductive Reasoning (i.e., CR, RR)</em>
+  <img src="assets/4-C-TR.jpeg" width="95%"><br>
+  <!-- <em></em> -->
+</p>
+
+<p align="center">
+  <img src="assets/5-R-LR.jpeg" width="95%"><br>
+  <!-- <em></em> -->
+</p>
+
+<p align="center">
+  <img src="assets/6-R-BR.jpeg" width="95%"><br>
+  <!-- <em></em> -->
+</p>
+
+<p align="center">
+  <img src="assets/7-R-HR.jpeg" width="95%"><br>
+  <!-- <em></em> -->
+</p>
+
+<p align="center">
+  <img src="assets/8-R-PR.jpeg" width="95%"><br>
+  <!-- <em></em> -->
+</p>
+
+<p align="center">
+  <img src="assets/9-R-GR.jpeg" width="95%"><br>
+  <!-- <em></em> -->
+</p>
+
+<p align="center">
+  <img src="assets/10-R-AR.jpeg" width="95%"><br>
+  <!-- <em></em> -->
+</p>
+
+<p align="center">
+  <img src="assets/11-R-CR.jpeg" width="95%"><br>
+  <!-- <em></em> -->
+</p>
+
+<p align="center">
+  <img src="assets/12-R-RR.jpeg" width="95%"><br>
+  <!-- <em></em> -->
 </p>
 
 ## ✍️ Citation
