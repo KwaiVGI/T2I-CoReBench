@@ -32,7 +32,7 @@
 
   <sup>1</sup>University of Science and Technology of China, <sup>2</sup>Kling Team, Kuaishou Technology, <sup>3</sup>The University of Hong Kong
   <br>
-  <sup>*</sup>Work done during internship at KwaiVGI, Kuaishou Technology. <sup>†</sup>Corresponding authors. <sup>†</sup>Project lead.
+  <sup>*</sup>Work done during internship at Kling Team, Kuaishou Technology. <sup>†</sup>Corresponding authors. <sup>†</sup>Project lead.
 
 </div>
 
