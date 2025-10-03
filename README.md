@@ -41,8 +41,9 @@
 **Overview of our T2I-CoReBench.** (a) Our benchmark comprehensively covers two fundamental T2I capabilities (i.e., *composition* and *reasoning*), further refined into 12 dimensions. (b–e) Our benchmark poses greater challenges to advanced T2I models, with higher compositional density than [DPG-Bench](https://arxiv.org/abs/2403.05135) and greater reasoning intensity than [R2I-Bench](https://arxiv.org/abs/2505.23493), enabling clearer performance differentiation across models under real-world complexities. Each image is scored based on the ratio of correctly generated elements.
 
 ## 📣 News
-- `2025/09` :star2: We have updated the evaluation results of <a href="https://seed.bytedance.com/en/seedream4_0" target="_blank"><strong>Seedream 4.0</strong></a>.
-- `2025/09` :star2: We have released our benchmark dataset and code.
+- `2025/10` 🌟 We have included the evaluation results using [Qwen3-VL-235B-Thinking](https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Thinking) in our [main paper](https://arxiv.org/abs/2509.03516) (Table 7), which demonstrates the best human alignment among open-source MLLMs.
+- `2025/09` 🌟 We have updated the evaluation results of [Seedream 4.0](https://seed.bytedance.com/en/seedream4_0).
+- `2025/09` 🌟 We have released our benchmark dataset and code.
 
 ## Benchmark Comparison
 
@@ -66,7 +67,11 @@ If you wish to sample with your own model, simply modify the sampling code in `s
 
 ### 📏 Run Evaluation
 
-Evaluate the generated images using our evaluation framework. We provide evaluation code based on both **Gemini 2.5 Flash** and **Qwen2.5-VL-72B**. For environment setup, please refer to the [Gemini documentation](https://ai.google.dev/gemini-api/docs) (an official API key is required and should be specified in `line 352` of `evaluate.py`) and the [vLLM User Guide](https://docs.vllm.ai/en/latest/getting_started/quickstart.html#installation), respectively. When using **Qwen2.5-VL-72B** for evaluation, our experiments are conducted with 8 × A800 GPUs (80GB); however, our tests confirm that it can also run with 4 × A800 GPUs.
+We provide evaluation code based on **(1) Gemini 2.5 Flash**, **(2) Qwen2.5-VL-72B**, and **(3) Qwen3-VL-235B-Thinking** for assessing the generated images within our benchmark.  
+
+For the **Gemini series**, please refer to the [Gemini documentation](https://ai.google.dev/gemini-api/docs) for environment setup. An official API key is required and should be specified in `evaluate.py` at **line 372**.  
+
+For the **Qwen series**, please follow the [vLLM User Guide](https://docs.vllm.ai/en/latest/getting_started/quickstart.html#installation) and consult their [official repository](https://github.com/QwenLM/Qwen3-VL) for environment setup. In our experiments, both Qwen2.5-VL-72B and Qwen3-VL-235B-Thinking are evaluated using 8 × A800 GPUs (80GB each). 
 
   ```bash
   bash eval.sh

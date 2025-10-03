@@ -73,21 +73,35 @@ def custom_collate_fn(batch):
 
 def start_evaluation_qwen(args, mllm_path, batch_size=256):
 
-    llm = LLM(
-        model=mllm_path,
-        max_num_seqs=batch_size,
-        limit_mm_per_prompt={"image": 1},
-        tensor_parallel_size=torch.cuda.device_count(),
-        max_model_len=4096,
-        gpu_memory_utilization=0.9,
-    )
+    if args.mllm == "Qwen2_5_VL_72B":
+        llm = LLM(
+            model=mllm_path,
+            max_num_seqs=batch_size,
+            limit_mm_per_prompt={"image": 1},
+            tensor_parallel_size=torch.cuda.device_count(),
+            max_model_len=4096,
+            gpu_memory_utilization=0.9,
+        )
+    elif args.mllm == "Qwen3_VL_235B_Thinking":
+        os.environ['VLLM_WORKER_MULTIPROC_METHOD'] = 'spawn'
+        llm = LLM(
+            model=mllm_path,
+            max_num_seqs=int(batch_size/2),
+            limit_mm_per_prompt={"image": 1},
+            tensor_parallel_size=torch.cuda.device_count(),
+            max_model_len=8192,
+            gpu_memory_utilization=0.8,
+            dtype="bfloat16",
+            mm_encoder_tp_mode="data",
+            enable_expert_parallel=True,
+            distributed_executor_backend="mp",
+        )
+        
     processor = AutoProcessor.from_pretrained(mllm_path, trust_remote_code=True)
-
     sampling_params = SamplingParams(
         temperature=0.0,
-        top_p=0.7,
         repetition_penalty=1.05,
-        max_tokens=512,
+        max_tokens=8192,
         stop_token_ids=[],
     )
 
@@ -118,7 +132,12 @@ def start_evaluation_qwen(args, mllm_path, batch_size=256):
                         "content": [{"type": "image", "image": PATH}],
                     }
                 ]
-                image_inputs, _ = process_vision_info(image_messages)
+                if args.mllm == "Qwen2_5_VL_72B":
+                    image_inputs, _ = process_vision_info(image_messages)
+                elif args.mllm == "Qwen3_VL_235B_Thinking":
+                    image_inputs, video_inputs, video_kwargs = process_vision_info(image_messages,
+                        image_patch_size=processor.image_processor.patch_size, return_video_kwargs=True, return_video_metadata=True,
+                    )
                 mm_data = {"image": image_inputs}
                 
                 for QID, QUESTION in enumerate(METADATA["Checklist"]):
@@ -338,7 +357,7 @@ if __name__ == '__main__':
     parser.add_argument('--model', type=str, help="""
         FLUX.1-schnell, FLUX.1-dev, FLUX.1-Krea-dev | SD-3-Medium, SD-3.5-Medium, SD-3.5-Large | PixArt-Alpha, PixArt-Sigma | Qwen-Image
     """)
-    parser.add_argument('--mllm', type=str, help="Qwen2_5_VL_72B, Gemini_2_5_Flash")
+    parser.add_argument('--mllm', type=str, help="Qwen2_5_VL_72B, Qwen3_VL_235B_Thinking, Gemini_2_5_Flash")
     parser.add_argument('--gen_eval_file', type=str, help="C-MI, C-MA, C-MR, C-TR | R-LR, R-BR, R-HR, R-PR | R-GR, R-AR | R-CR, R-RR")
     parser.add_argument('--output_path', type=str, default="logs")
     parser.add_argument('--update', action='store_true', default=False)
@@ -348,8 +367,9 @@ if __name__ == '__main__':
     seed_everything(args.seed)
 
     MLLMs = {
-        "Qwen2_5_VL_72B"        : "Qwen/Qwen2.5-VL-72B-Instruct",
-        "Gemini_2_5_Flash"      : ["gemini-2.5-flash", "GEMINI_API_KEY"],
+        "Qwen2_5_VL_72B"         : "Qwen/Qwen2.5-VL-72B-Instruct",
+        "Qwen3_VL_235B_Thinking" : "Qwen/Qwen3-VL-235B-A22B-Thinking",
+        "Gemini_2_5_Flash"       : ["gemini-2.5-flash", "GEMINI_API_KEY"],
     }
 
     if "Qwen" in args.mllm: 
