@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MODELS=("Qwen-Image")
-DIMENSION="C-MI, C-MA, C-MR, C-TR, R-LR, R-BR, R-CR, R-RR, C-MI, C-MA, C-MR, C-TR"
+DIMENSION="C-MI, C-MA, C-MR, C-TR, R-LR, R-BR, R-HR, R-PR, R-GR, R-AR, R-CR, R-RR"
 
 GPUS=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
 

@@ -84,9 +84,10 @@ def start_evaluation_qwen(args, mllm_path, batch_size=256):
         )
     elif args.mllm == "Qwen3_VL_235B_Thinking":
         os.environ['VLLM_WORKER_MULTIPROC_METHOD'] = 'spawn'
+        batch_size = int(batch_size / 2)
         llm = LLM(
             model=mllm_path,
-            max_num_seqs=int(batch_size/2),
+            max_num_seqs=batch_size,
             limit_mm_per_prompt={"image": 1},
             tensor_parallel_size=torch.cuda.device_count(),
             max_model_len=8192,
