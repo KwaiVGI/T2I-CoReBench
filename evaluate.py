@@ -73,30 +73,32 @@ def custom_collate_fn(batch):
 
 def start_evaluation_qwen(args, mllm_path, batch_size=256):
 
-    if args.mllm == "Qwen2_5_VL_72B":
-        llm = LLM(
-            model=mllm_path,
-            max_num_seqs=batch_size,
-            limit_mm_per_prompt={"image": 1},
-            tensor_parallel_size=torch.cuda.device_count(),
+    if "30B" in args.vlm: batch_size = int(batch_size * 2)
+    if "235B" in args.vlm: batch_size = int(batch_size / 2)
+
+    # Base Config
+    llm_config = dict(
+        model=mllm_path,
+        max_num_seqs=batch_size,
+        limit_mm_per_prompt={"image": 1},
+        tensor_parallel_size=torch.cuda.device_count(),
+        gpu_memory_utilization=0.8,
+    )
+
+    if "Qwen2_5" in args.vlm:
+        llm_config.update(
             max_model_len=4096,
-            gpu_memory_utilization=0.9,
         )
-    elif args.mllm == "Qwen3_VL_235B_Thinking":
+    elif "Qwen3" in args.vlm:
         os.environ['VLLM_WORKER_MULTIPROC_METHOD'] = 'spawn'
-        batch_size = int(batch_size / 2)
-        llm = LLM(
-            model=mllm_path,
-            max_num_seqs=batch_size,
-            limit_mm_per_prompt={"image": 1},
-            tensor_parallel_size=torch.cuda.device_count(),
+        llm_config.update(
             max_model_len=8192,
-            gpu_memory_utilization=0.8,
             dtype="bfloat16",
             mm_encoder_tp_mode="data",
             enable_expert_parallel=True,
             distributed_executor_backend="mp",
         )
+    llm = LLM(**llm_config)
         
     processor = AutoProcessor.from_pretrained(mllm_path, trust_remote_code=True)
     sampling_params = SamplingParams(
@@ -358,7 +360,7 @@ if __name__ == '__main__':
     parser.add_argument('--model', type=str, help="""
         FLUX.1-schnell, FLUX.1-dev, FLUX.1-Krea-dev | SD-3-Medium, SD-3.5-Medium, SD-3.5-Large | PixArt-Alpha, PixArt-Sigma | Qwen-Image
     """)
-    parser.add_argument('--mllm', type=str, help="Qwen2_5_VL_72B, Qwen3_VL_235B_Thinking, Gemini_2_5_Flash")
+    parser.add_argument('--mllm', type=str, help="Qwen2_5_VL_72B, Qwen3_VL_30B_Thinking, Qwen3_VL_235B_Thinking, Gemini_2_5_Flash")
     parser.add_argument('--gen_eval_file', type=str, help="C-MI, C-MA, C-MR, C-TR | R-LR, R-BR, R-HR, R-PR | R-GR, R-AR | R-CR, R-RR")
     parser.add_argument('--output_path', type=str, default="logs")
     parser.add_argument('--update', action='store_true', default=False)
@@ -369,6 +371,7 @@ if __name__ == '__main__':
 
     MLLMs = {
         "Qwen2_5_VL_72B"         : "Qwen/Qwen2.5-VL-72B-Instruct",
+        "Qwen3_VL_30B_Thinking"  : "Qwen/Qwen3-VL-30B-A3B-Thinking",
         "Qwen3_VL_235B_Thinking" : "Qwen/Qwen3-VL-235B-A22B-Thinking",
         "Gemini_2_5_Flash"       : ["gemini-2.5-flash", "GEMINI_API_KEY"],
     }

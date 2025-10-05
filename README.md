@@ -41,7 +41,7 @@
 **Overview of our T2I-CoReBench.** (a) Our benchmark comprehensively covers two fundamental T2I capabilities (i.e., *composition* and *reasoning*), further refined into 12 dimensions. (b–e) Our benchmark poses greater challenges to advanced T2I models, with higher compositional density than [DPG-Bench](https://arxiv.org/abs/2403.05135) and greater reasoning intensity than [R2I-Bench](https://arxiv.org/abs/2505.23493), enabling clearer performance differentiation across models under real-world complexities. Each image is scored based on the ratio of correctly generated elements.
 
 ## 📣 News
-- `2025/10` 🌟 We have included the evaluation results using [Qwen3-VL-235B-Thinking](https://huggingface.co/Qwen/Qwen3-VL-235B-A22B-Thinking) in our [main paper](https://arxiv.org/abs/2509.03516) (Table 7), which demonstrates the best human alignment among open-source MLLMs.
+- `2025/10` 🌟 We have updated our evaluation code to include the [Qwen3-VL series](https://github.com/QwenLM/Qwen3-VL), see the [Run Evaluation](#-run-evaluation) section for more details.
 - `2025/09` 🌟 We have updated the evaluation results of [Seedream 4.0](https://seed.bytedance.com/en/seedream4_0).
 - `2025/09` 🌟 We have released our benchmark dataset and code.
 
@@ -67,11 +67,11 @@ If you wish to sample with your own model, simply modify the sampling code in `s
 
 ### 📏 Run Evaluation
 
-We provide evaluation code based on **(1) Gemini 2.5 Flash**, **(2) Qwen2.5-VL-72B**, and **(3) Qwen3-VL-235B-Thinking** for assessing the generated images within our benchmark.  
+We provide evaluation code with MLLMs, including: **(1) Gemini 2.5 Flash**, **(2) Qwen2.5-VL-72B**, **(3) Qwen3-VL-30B-Thinking** and **(4) Qwen3-VL-235B-Thinking** for assessing the generated images within our benchmark.  
 
-For the **Gemini series**, please refer to the [Gemini documentation](https://ai.google.dev/gemini-api/docs) for environment setup. An official API key is required and should be specified in `evaluate.py` at **line 372**.  
+> 🚨 **We highly recommend** using **Qwen3-VL-30B-Thinking** as the open-source evaluator, since it achieves **competitive performance** in the open-source domain while maintaining **high inference efficiency**.
 
-For the **Qwen series**, please follow the [vLLM User Guide](https://docs.vllm.ai/en/latest/getting_started/quickstart.html#installation) and consult their [official repository](https://github.com/QwenLM/Qwen3-VL) for environment setup. In our experiments, both Qwen2.5-VL-72B and Qwen3-VL-235B-Thinking are evaluated using 8 × A800 GPUs (80GB each). 
+For the **Gemini series**, please refer to the [Gemini documentation](https://ai.google.dev/gemini-api/docs) for environment setup. An official API key is required and should be specified in `evaluate.py` at **line 372**.  For the **Qwen series**, please follow the [vLLM User Guide](https://docs.vllm.ai/en/latest/getting_started/quickstart.html#installation) and consult their [official repository](https://github.com/QwenLM/Qwen3-VL) for environment setup. In our experiments, all Qwen evaluators are implemented using 8 × A800 GPUs (80GB each). 
 
   ```bash
   bash eval.sh
