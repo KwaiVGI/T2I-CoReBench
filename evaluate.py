@@ -185,13 +185,14 @@ def start_evaluation_qwen(args, mllm_path, batch_size=256):
                 for idx, batch_request in enumerate(batch_requests):
                     if args.update:
                         try:
+                            # Only reuse previous results when both prompt and question match, and the previous result is 0/1
                             ID, QID = batch_request['request_id'].split('_')
                             assert (
                                 PRE_RESULT[ID]['Checklist'][int(QID)]['question'] == batch_request['prompt'].split('Question: "')[-1].split('"<|im_end|>')[0]
                                 and
                                 PRE_RESULT[ID]['Prompt'] == batch_request['prompt'].split('>Prompt: "')[-1].split('"\nQuestion:')[0]
                             )
-                            outputs[idx] = ["no", "yes"][PRE_RESULT[ID]['Checklist'][int(QID)]['score']]  # Qwen 不会出现 score = "" 的情况
+                            outputs[idx] = ["no", "yes"][PRE_RESULT[ID]['Checklist'][int(QID)]['score']]
                         except:
                             batch_inputs.append({k: v for k, v in batch_request.items() if k in ["prompt", "multi_modal_data"]})
                             batch_indices.append(idx)
@@ -290,13 +291,13 @@ def start_evaluation_gemini(args, mllm_path, batch_size=256, max_retries=3, time
                     if args.update:
                         ID, QID = input['request_id'].split('_')
                         try:
+                            # Only reuse previous results when both prompt and question match, and the previous result is 0/1
                             assert (
                                 PRE_RESULT[ID]['Checklist'][int(QID)]['question'] == input['request'][1].split('Question: "')[-1][:-1] 
                                 and
                                 PRE_RESULT[ID]['Prompt'] == input['request'][1].split('\nPrompt: "')[-1].split('"\nQuestion:')[0]
                             )
-                            score = int(PRE_RESULT[ID]['Checklist'][int(QID)]['score'])
-                            if score in [0, 1]: return ["no", "yes"][score]
+                            return ["no", "yes"][int(PRE_RESULT[ID]['Checklist'][int(QID)]['score'])]
                         except:
                             pass
                     try:
@@ -360,7 +361,7 @@ if __name__ == '__main__':
     parser.add_argument('--model', type=str, help="""
         FLUX.1-schnell, FLUX.1-dev, FLUX.1-Krea-dev | SD-3-Medium, SD-3.5-Medium, SD-3.5-Large | PixArt-Alpha, PixArt-Sigma | Qwen-Image
     """)
-    parser.add_argument('--mllm', type=str, help="Qwen2_5_VL_72B, Qwen3_VL_30B_Thinking, Qwen3_VL_235B_Thinking, Gemini_2_5_Flash")
+    parser.add_argument('--mllm', type=str, help="Qwen2_5_VL_72B, Qwen3_VL_30B_Thinking, Gemini_2_5_Flash")
     parser.add_argument('--gen_eval_file', type=str, help="C-MI, C-MA, C-MR, C-TR | R-LR, R-BR, R-HR, R-PR | R-GR, R-AR | R-CR, R-RR")
     parser.add_argument('--output_path', type=str, default="logs")
     parser.add_argument('--update', action='store_true', default=False)
@@ -372,7 +373,6 @@ if __name__ == '__main__':
     MLLMs = {
         "Qwen2_5_VL_72B"         : "Qwen/Qwen2.5-VL-72B-Instruct",
         "Qwen3_VL_30B_Thinking"  : "Qwen/Qwen3-VL-30B-A3B-Thinking",
-        "Qwen3_VL_235B_Thinking" : "Qwen/Qwen3-VL-235B-A22B-Thinking",
         "Gemini_2_5_Flash"       : ["gemini-2.5-flash", "GEMINI_API_KEY"],
     }
 

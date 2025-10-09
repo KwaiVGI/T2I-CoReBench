@@ -67,9 +67,9 @@ If you wish to sample with your own model, simply modify the sampling code in `s
 
 ### 📏 Run Evaluation
 
-We provide evaluation code with MLLMs, including: **(1) Gemini 2.5 Flash**, **(2) Qwen2.5-VL-72B**, **(3) Qwen3-VL-30B-Thinking** and **(4) Qwen3-VL-235B-Thinking** for assessing the generated images within our benchmark.  
+We provide evaluation code with MLLMs, including: **(1) Gemini 2.5 Flash**, **(2) Qwen2.5-VL-72B**, and **(3) Qwen3-VL-30B-Thinking** for assessing the generated images within our benchmark.  
 
-> 🚨 We highly recommend using **Qwen3-VL-30B-Thinking** as the open-source evaluator, since it achieves **competitive performance** in the open-source domain while maintaining **high inference efficiency**.
+> 🚨 We highly recommend using **Qwen3-VL-30B-Thinking** as the open-source evaluator, since it achieves **competitive performance** in the open-source domain while maintaining **high inference efficiency**. We will upate the evaluation result soon.
 
 For the **Gemini series**, please refer to the [Gemini documentation](https://ai.google.dev/gemini-api/docs) for environment setup. An official API key is required and should be specified in `evaluate.py` at **line 372**.  For the **Qwen series**, please follow the [vLLM User Guide](https://docs.vllm.ai/en/latest/getting_started/quickstart.html#installation) and consult their [official repository](https://github.com/QwenLM/Qwen3-VL) for environment setup. In our experiments, all Qwen evaluators are implemented using 8 × A800 GPUs (80GB each). 
 
