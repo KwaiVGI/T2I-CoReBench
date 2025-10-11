@@ -73,8 +73,8 @@ def custom_collate_fn(batch):
 
 def start_evaluation_qwen(args, mllm_path, batch_size=256):
 
-    if "30B" in args.vlm: batch_size = int(batch_size * 2)
-    if "235B" in args.vlm: batch_size = int(batch_size / 2)
+    if "30B" in args.mllm: batch_size = int(batch_size * 2)
+    if "235B" in args.mllm: batch_size = int(batch_size / 2)
 
     # Base Config
     llm_config = dict(
@@ -85,11 +85,11 @@ def start_evaluation_qwen(args, mllm_path, batch_size=256):
         gpu_memory_utilization=0.8,
     )
 
-    if "Qwen2_5" in args.vlm:
+    if "Qwen2_5" in args.mllm:
         llm_config.update(
             max_model_len=4096,
         )
-    elif "Qwen3" in args.vlm:
+    elif "Qwen3" in args.mllm:
         os.environ['VLLM_WORKER_MULTIPROC_METHOD'] = 'spawn'
         llm_config.update(
             max_model_len=8192,
@@ -135,9 +135,9 @@ def start_evaluation_qwen(args, mllm_path, batch_size=256):
                         "content": [{"type": "image", "image": PATH}],
                     }
                 ]
-                if args.mllm == "Qwen2_5_VL_72B":
+                if "Qwen2_5" in args.mllm:
                     image_inputs, _ = process_vision_info(image_messages)
-                elif args.mllm == "Qwen3_VL_235B_Thinking":
+                elif "Qwen3" in args.mllm:
                     image_inputs, video_inputs, video_kwargs = process_vision_info(image_messages,
                         image_patch_size=processor.image_processor.patch_size, return_video_kwargs=True, return_video_metadata=True,
                     )
@@ -361,8 +361,12 @@ if __name__ == '__main__':
     parser.add_argument('--model', type=str, help="""
         FLUX.1-schnell, FLUX.1-dev, FLUX.1-Krea-dev | SD-3-Medium, SD-3.5-Medium, SD-3.5-Large | PixArt-Alpha, PixArt-Sigma | Qwen-Image
     """)
-    parser.add_argument('--mllm', type=str, help="Qwen2_5_VL_72B, Qwen3_VL_30B_Thinking, Gemini_2_5_Flash")
-    parser.add_argument('--gen_eval_file', type=str, help="C-MI, C-MA, C-MR, C-TR | R-LR, R-BR, R-HR, R-PR | R-GR, R-AR | R-CR, R-RR")
+    parser.add_argument('--mllm', type=str, help="""
+        Gemini_2_5_Flash, Qwen2_5_VL_72B, Qwen3_VL_30B_Instruct, Qwen3_VL_30B_Thinking, Qwen3_VL_235B_Instruct, Qwen3_VL_235B_Thinking
+    """)
+    parser.add_argument('--gen_eval_file', type=str, help="""
+        C-MI, C-MA, C-MR, C-TR | R-LR, R-BR, R-HR, R-PR | R-GR, R-AR | R-CR, R-RR
+    """)
     parser.add_argument('--output_path', type=str, default="logs")
     parser.add_argument('--update', action='store_true', default=False)
     parser.add_argument('--seed', type=int, default=0)
@@ -371,9 +375,12 @@ if __name__ == '__main__':
     seed_everything(args.seed)
 
     MLLMs = {
-        "Qwen2_5_VL_72B"         : "Qwen/Qwen2.5-VL-72B-Instruct",
-        "Qwen3_VL_30B_Thinking"  : "Qwen/Qwen3-VL-30B-A3B-Thinking",
         "Gemini_2_5_Flash"       : ["gemini-2.5-flash", "GEMINI_API_KEY"],
+        "Qwen2_5_VL_72B"         : "Qwen/Qwen2.5-VL-72B-Instruct",
+        "Qwen3_VL_30B_Instruct"  : "Qwen/Qwen3-VL-30B-A3B-Instruct",
+        "Qwen3_VL_30B_Thinking"  : "Qwen/Qwen3-VL-30B-A3B-Thinking",
+        "Qwen3_VL_235B_Instruct" : "Qwen/Qwen3-VL-235B-A22B-Instruct",
+        "Qwen3_VL_235B_Thinking" : "Qwen/Qwen3-VL-235B-A22B-Thinking",
     }
 
     if "Qwen" in args.mllm: 

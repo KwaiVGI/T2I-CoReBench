@@ -3,7 +3,8 @@
 MODELS="Qwen-Image"
 DIMENSION="C-MI, C-MA, C-MR, C-TR, R-LR, R-BR, R-HR, R-PR, R-GR, R-AR, R-CR, R-RR"
 
-MLLM="Qwen3_VL_30B_Thinking"  # Qwen2_5_VL_72B, Qwen3_VL_30B_Thinking, Gemini_2_5_Flash
+# [HELP] Gemini_2_5_Flash, Qwen2_5_VL_72B, Qwen3_VL_30B_Instruct, Qwen3_VL_30B_Thinking, Qwen3_VL_235B_Instruct, Qwen3_VL_235B_Thinking
+MLLM="Gemini_2_5_Flash"
 
 # start evaluation
 python evaluate.py \
