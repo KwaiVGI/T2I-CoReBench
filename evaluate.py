@@ -71,30 +71,29 @@ def custom_collate_fn(batch):
     return batch
 
 
-def start_evaluation_qwen(args, mllm_path, batch_size=256):
+def start_evaluation_qwen(args, mllm_path, batch_size=128):
 
-    if "30B" in args.mllm: batch_size = int(batch_size * 2)
     if "235B" in args.mllm: batch_size = int(batch_size / 2)
 
-    # Base Config
     llm_config = dict(
         model=mllm_path,
         max_num_seqs=batch_size,
-        limit_mm_per_prompt={"image": 1},
+        limit_mm_per_prompt={"image": 1, "video": 0},
         tensor_parallel_size=torch.cuda.device_count(),
-        gpu_memory_utilization=0.8,
+        mm_encoder_tp_mode="data",
     )
 
+    # Qwen2.5-VL Usage Guide: https://docs.vllm.ai/projects/recipes/en/latest/Qwen/Qwen2.5-VL.html
     if "Qwen2_5" in args.mllm:
         llm_config.update(
-            max_model_len=4096,
+            max_model_len=65536,
         )
+    # Qwen3-VL Usage Guide: https://docs.vllm.ai/projects/recipes/en/latest/Qwen/Qwen3-VL.html
     elif "Qwen3" in args.mllm:
         os.environ['VLLM_WORKER_MULTIPROC_METHOD'] = 'spawn'
         llm_config.update(
-            max_model_len=8192,
+            max_model_len=128000,
             dtype="bfloat16",
-            mm_encoder_tp_mode="data",
             enable_expert_parallel=True,
             distributed_executor_backend="mp",
         )
@@ -135,12 +134,9 @@ def start_evaluation_qwen(args, mllm_path, batch_size=256):
                         "content": [{"type": "image", "image": PATH}],
                     }
                 ]
-                if "Qwen2_5" in args.mllm:
-                    image_inputs, _ = process_vision_info(image_messages)
-                elif "Qwen3" in args.mllm:
-                    image_inputs, video_inputs, video_kwargs = process_vision_info(image_messages,
-                        image_patch_size=processor.image_processor.patch_size, return_video_kwargs=True, return_video_metadata=True,
-                    )
+                image_inputs, video_inputs, video_kwargs = process_vision_info(image_messages,
+                    image_patch_size=processor.image_processor.patch_size, return_video_kwargs=True, return_video_metadata=True,
+                )
                 mm_data = {"image": image_inputs}
                 
                 for QID, QUESTION in enumerate(METADATA["Checklist"]):
@@ -202,7 +198,8 @@ def start_evaluation_qwen(args, mllm_path, batch_size=256):
 
                 if batch_inputs:
                     llm_outputs = llm.generate(batch_inputs, sampling_params=sampling_params, use_tqdm=False)
-                    for llm_idx, batch_idx in enumerate(batch_indices): outputs[batch_idx] = llm_outputs[llm_idx].outputs[0].text
+                    for llm_idx, batch_idx in enumerate(batch_indices): 
+                        outputs[batch_idx] = llm_outputs[llm_idx].outputs[0].text.split('</think>\n\n')[-1]
 
                 # Process all results
                 assert all(output is not None for output in outputs)
