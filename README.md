@@ -69,7 +69,7 @@ If you wish to sample with your own model, simply modify the sampling code in `s
 
 We provide evaluation code supporting various MLLMs, including **Gemini 2.5 Flash** (used in our main paper) and the **Qwen series** (complementary open-source evaluators), both of which are used to assess the generated images in our benchmark.
 
-For the **Gemini series**, please refer to the [Gemini documentation](https://ai.google.dev/gemini-api/docs) for environment setup. An official API key is required and should be specified in `evaluate.py` at `line 378`.  For the **Qwen series**, please follow the [vLLM User Guide](https://docs.vllm.ai/en/latest/getting_started/quickstart.html#installation) and consult their [official repository](https://github.com/QwenLM/Qwen3-VL) for environment setup. In our experiments, all Qwen evaluators are implemented using 8 × A800 GPUs (80GB each). 
+For the **Gemini series**, please refer to the [Gemini documentation](https://ai.google.dev/gemini-api/docs) for environment setup. An official API key is required and should be specified in `evaluate.py` at `line 375`.  For the **Qwen series**, please follow the [vLLM User Guide](https://docs.vllm.ai/en/latest/getting_started/quickstart.html#installation) and consult their [official repository](https://github.com/QwenLM/Qwen3-VL) for environment setup. In our experiments, all Qwen evaluators are implemented using 8 × A800 GPUs (80GB each). 
 
   ```bash
   bash eval.sh
